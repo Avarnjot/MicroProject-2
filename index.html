@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminders</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Reminders</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <div id="app">
+        <h1>Reminders</h1>
+        <input v-model="newTask" @keyup.enter="addTask" type="text" placeholder="Add new reminder">
+         <!-- List of tasks -->
+         <ul>
+            <!-- Iterate through tasks -->
+            <li v-for="(task, index) in tasks" :key="index">
+                <!-- Checkbox to mark task as completed -->
+                <input type="checkbox" v-model="task.completed">
+                <span :class="{ 'completed': task.completed }">{{ task.title }}</span><br>
+                <!-- Button to delete task -->
+                <button @click="deleteTask(index)">Delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
